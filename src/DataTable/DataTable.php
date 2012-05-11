@@ -233,7 +233,8 @@ abstract class DataTable_DataTable
         
         	throw new DataTable_DataTableException("$getter() method is required in " . get_class($object) . " or " . get_class($this));
       	}
-    }
+     }
+    } 
   }
 
   /**
