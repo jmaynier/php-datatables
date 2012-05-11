@@ -225,8 +225,14 @@ abstract class DataTable_DataTable
       if(method_exists($object, $getter)){
         return call_user_func(array($object, $getter));
       } else {
-        throw new DataTable_DataTableException("$getter() method is required in " . get_class($object) . " or " . get_class($this));
-      }
+      	
+      	//instead of writting custom getter, pass the name as the key to a generic function. For example it easier if column name match DB columns name
+      	if(method_exists($object, 'getData')){
+        	return $object->getData($column->getName());
+      	} else{ 
+        
+        	throw new DataTable_DataTableException("$getter() method is required in " . get_class($object) . " or " . get_class($this));
+      	}
     }
   }
 
